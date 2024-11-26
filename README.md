@@ -1,4 +1,4 @@
 # Jolki_Palki_WebDev_Project
 
-comming soon.. 
+coming soon.. 
 in theatres near you ✨
