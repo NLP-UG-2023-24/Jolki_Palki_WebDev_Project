@@ -19,10 +19,5 @@
     align-items: center;
     justify-content: left;
     width: fit-content;
-    background-color: antiquewhite;
     padding: 15px;
-}
-
-.about_icons_box a:visied{
-    color: green
 }
