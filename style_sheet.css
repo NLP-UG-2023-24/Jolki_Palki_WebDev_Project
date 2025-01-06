@@ -1,1 +1,6 @@
-/* hello? */
+.box{
+    display:flex;
+}
+.person{
+    display: flex;
+}
