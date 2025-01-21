@@ -9,17 +9,38 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Simple Statistics</h1>
-    </header>
-    <main>
-        <div class="container">
-            <h1>Birthday News and Fun Facts</h1>
-            <p>Enter your birth date to discover what happened on your special day!</p>
-            <input type="date" id="birthDate" />
-            <button onclick="fetchNews()">Get News</button>
-            <div class="articles" id="articles"></div>
-        </div>
-        <section>
+        <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+		<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
+		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+		<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+
+		<div id="Home" class="tabcontent">
+  		<h3>Home</h3>
+  		<p>Hello!</p>
+		</div>
+
+		<div id="News" class="tabcontent">
+  		<h3>News</h3>
+  		<p>Some news this fine birth day!
+			<div class="container">
+				<h1>Birthday News and Fun Facts</h1>
+				<p>Enter your birth date to discover what happened on your special day!</p>
+				<input type="date" id="birthDate" />
+				<button onclick="fetchNews()">Get News</button>
+				<div class="articles" id="articles"></div>
+			</div>
+		</p>
+		</div>
+
+		<div id="Project" class="tabcontent">
+  		<h3>About the project</h3>
+  		<p>Amazing stuff!</p>
+		</div>
+
+		<div id="About" class="tabcontent">
+  		<h3>About</h3>
+  		<p>Who we are and what we do.</p>
+		  <section>
             <div class="people_container">
                 <h1 class="about_header">ABOUT US</h1>
                 <p>We are NLP students attempting to do something practical and cool... Anyway, we'll see how it goes.</p>
@@ -51,6 +72,10 @@
                 </div>
             </div>
         </section>
+		</div>
+    </header>
+    <main>
+        
     </main>
     <footer>
         <p>&copy; 2025 Jolki Palki</p>
