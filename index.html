@@ -3,44 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style_sheet.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <title>Birthday News and Fun Facts</title>
+    <style>
+        /* Overall background color */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #F4F3F1;
+            color: #333;
+        }
+
+        header, footer {
+            background-color: #F4F3F1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1, footer p {
+            color: #4a4a4a;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+            border-radius: 10px; /* Rounded corners */
+            background: white; /* Standout background for container */
+        }
+
+        h1, h3 {
+            color: #4a4a4a;
+        }
+
+        input[type="date"] {
+            font-size: 1em;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+            max-width: 400px;
+            margin: 10px 0 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #D8959B;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
+        }
+
+        button:hover {
+            background-color: #B97483;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+        }
+
+        .articles {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .article {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
+        }
+
+        .article h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #4a4a4a;
+        }
+
+        .article p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .article a {
+            color: #9370db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .article a:hover {
+            text-decoration: underline;
+        }
+
+        /* Tab styles */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
+            border-radius: 0 0 5px 5px; /* Slightly rounded corners */
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
+            border-radius: 10px;
+        }
+
+        /* Tab-specific colors */
+        #Home {
+            background-color: #F3BABA;
+        }
+
+        #News {
+            background-color: #F2D1D4;
+        }
+
+        #Project {
+            background-color: #A7B59E;
+        }
+
+        #About {
+            background-color: #799567;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-		<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
-		<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+        <button class="tablink" onclick="openPage('Home', this, '#F3BABA')">Home</button>
+        <button class="tablink" onclick="openPage('News', this, '#F8DOC8')" id="defaultOpen">News</button>
+        <button class="tablink" onclick="openPage('Project', this, '#A7B59E')">Project</button>
+        <button class="tablink" onclick="openPage('About', this, '#799567')">About</button>
+    </header>
 
-		<div id="Home" class="tabcontent">
-  		<h3>Home</h3>
-  		<p>Hello!</p>
-		</div>
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+        <p>Welcome to the Home tab!</p>
+    </div>
 
-		<div id="News" class="tabcontent">
-  		<h3>News</h3>
-  		<p>Some news this fine birth day!
-			<div class="container">
-				<h1>Birthday News and Fun Facts</h1>
-				<p>Enter your birth date to discover what happened on your special day!</p>
-				<input type="date" id="birthDate" />
-				<button onclick="fetchNews()">Get News</button>
-				<div class="articles" id="articles"></div>
-			</div>
-		</p>
-		</div>
+    <div id="News" class="tabcontent">
+        <h3>News</h3>
+        <p>Some news for your birthday!</p>
+        <div class="container">
+            <h1>Birthday News and Fun Facts</h1>
+            <p>Enter your birth date to discover what happened on your special day!</p>
+            <input type="date" id="birthDate" />
+            <button onclick="fetchNews()">Get News</button>
+            <div class="articles" id="articles"></div>
+        </div>
+    </div>
 
-		<div id="Project" class="tabcontent">
-  		<h3>About the project</h3>
-  		<p>Amazing stuff!</p>
-		</div>
+    <div id="Project" class="tabcontent">
+        <h3>Project</h3>
+        <p>Amazing stuff!</p>
+    </div>
 
-		<div id="About" class="tabcontent">
-  		<h3>About</h3>
-  		<p>Who we are and what we do.</p>
-		  <section>
+    <div id="About" class="tabcontent">
+        <h3>Info</h3>
+        <section>
             <div class="people_container">
                 <h1 class="about_header">ABOUT US</h1>
                 <p>We are NLP students attempting to do something practical and cool... Anyway, we'll see how it goes.</p>
@@ -72,14 +212,12 @@
                 </div>
             </div>
         </section>
-		</div>
-    </header>
-    <main>
-        
-    </main>
+    </div>
+
     <footer>
         <p>&copy; 2025 Jolki Palki</p>
     </footer>
+
     <script>
         async function fetchNews() {
             const date = document.getElementById("birthDate").value;
@@ -94,7 +232,7 @@
             try {
                 const response = await fetch(`http://localhost:5000/news?date=${date}`);
                 const data = await response.json();
-                
+
                 if (data.articles.length === 0) {
                     articlesDiv.innerHTML = "<p>No news found for this date!</p>";
                     return;
@@ -116,28 +254,20 @@
             }
         }
 
-    function openPage(pageName, elmnt, color) {
-        // Hide all elements with class="tabcontent" by default */
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+        function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
         }
 
-        // Remove the background color of all tablinks/buttons
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-
-        // Show the specific tab content
-        document.getElementById(pageName).style.display = "block";
-
-        // Add the specific color to the button used to open the tab content
-        elmnt.style.backgroundColor = color;
-        }
-
-        // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
     </script>
 </body>
