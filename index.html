@@ -146,6 +146,38 @@
         #About {
             background-color: #799567;
         }
+
+        .projects_container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .project {
+        flex: 1;
+        background-color: #fff;
+        padding: 20px;
+        color: #4a4a4a;
+        font-size: 18px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .project h4 {
+        font-size: 28px;
+        margin: 0;
+      }
+
+     .project:hover {
+        background-color: #516643;
+        color: #fff;
+        transition: all 0.3s ease;
+     }
+     
+    @media (max-width: 768px) {
+      .projects_container {
+        flex-direction: column;
+      }
+    }
     </style>
 </head>
 <body>
@@ -175,7 +207,35 @@
 
     <div id="Project" class="tabcontent">
         <h3>Project</h3>
-        <p>Amazing stuff!</p>
+        <div class="projects_container">
+            <article class="project">
+              <h4>Title 1</h4>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book.
+              </p>
+            </article>
+            <article class="project">
+              <h4>Title 2</h4>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book.
+              </p>
+            </article>
+            <article class="project">
+              <h4>Title 3</h4>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of type
+                and scrambled it to make a type specimen book.
+              </p>
+            </article>
+          </div>
     </div>
 
     <div id="About" class="tabcontent">
