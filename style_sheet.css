@@ -22,17 +22,16 @@
     padding: 15px;
 }
 
-        
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #e6e6fa, #fff);
+    background: #F4F3F1;
     color: #333;
 }
 
 header, footer {
-    background-color: #dcd0ff;
+    background-color: #F4F3F1;
     text-align: center;
     padding: 20px;
 }
@@ -47,6 +46,9 @@ header h1, footer p {
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+    border-radius: 10px; /* Rounded corners */
+    background: white; /* Standout background for container */
 }
 
 h1, h3 {
@@ -66,16 +68,19 @@ input[type="date"] {
 button {
     padding: 10px 20px;
     font-size: 1em;
-    background-color: #9370db;
+    background-color: #D8959B;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
+        
 }
 
 button:hover {
-    background-color: #7b5fa4;
+    background-color: #B97483;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
 }
 
 .articles {
@@ -88,7 +93,7 @@ button:hover {
     margin: 10px 0;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow:  0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .article h3 {
@@ -157,6 +162,8 @@ body, html {
     padding: 14px 16px;
     font-size: 17px;
     width: 25%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
+    border-radius: 0 0 5px 5px; /* Slightly rounded corners */
   }
   
   .tablink:hover {
@@ -169,9 +176,43 @@ body, html {
     display: none;
     padding: 100px 20px;
     height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
+    border-radius: 10px;
   }
   
-  #Home {background-color: red;}
-  #News {background-color: green;}
-  #Project {background-color: blue;}
-  #About {background-color: orange;}
+  #Home {background-color: #F3BABA;}
+  #News {background-color: #F2D1D4;}
+  #Project {background-color: #A7B59E;}
+  #About {background-color: #799567;}
+
+  .projects_container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .project {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    color: #4a4a4a;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  .project h4 {
+    font-size: 28px;
+    margin: 0;
+  }
+
+ .project:hover {
+    background-color: #516643;
+    color: #fff;
+    transition: all 0.3s ease;
+ }
+ 
+@media (max-width: 768px) {
+  .projects_container {
+    flex-direction: column;
+  }
+}
