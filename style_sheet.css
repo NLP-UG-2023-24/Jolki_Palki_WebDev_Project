@@ -13,14 +13,47 @@
     gap: 20px;
 }
 
+.about {
+    display: none;
+    color: #333;
+}
+
 .person{
     display: flex;
+    
+}
+
+.person:hover .about{
+    display: block;
     flex-direction: column;
     align-items: center;
     justify-content: left;
     width: fit-content;
     padding: 15px;
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    color: #4a4a4a;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
+
+.about_icons_box{
+    display: flex;
+    gap: 20px;
+}
+
+.about_icons_box a{
+    background-color: white;
+    padding: 1em;
+    border-radius: 50%;
+}
+
+.about_icons_box a svg{
+    height: 30px;
+}
+
 
 body {
     font-family: Arial, sans-serif;
