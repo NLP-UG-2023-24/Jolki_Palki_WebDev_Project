@@ -180,10 +180,10 @@ body, html {
     border-radius: 10px;
   }
   
-  #Home {background-color: #F3BABA;}
+  #Home {background-color: #A7B59E;}
   #News {background-color: #F2D1D4;}
   #Project {background-color: #A7B59E;}
-  #About {background-color: #799567;}
+  #About {background-color: #F2D1D4;}
 
   .projects_container {
     display: flex;
@@ -206,7 +206,7 @@ body, html {
   }
 
  .project:hover {
-    background-color: #516643;
+    background-color: #A7B59E;
     color: #fff;
     transition: all 0.3s ease;
  }
