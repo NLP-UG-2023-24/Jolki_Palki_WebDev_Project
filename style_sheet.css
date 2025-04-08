@@ -20,8 +20,23 @@
 
 .person{
     display: flex;
-    
+    align-items: center; 
+    gap: 20px; 
+    padding: 20px;
 }
+
+.photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px; /* optional: rounded corners */
+}
+
+.person h3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
 .person:hover .about{
     display: block;
