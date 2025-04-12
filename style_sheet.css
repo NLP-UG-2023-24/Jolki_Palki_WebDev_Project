@@ -300,3 +300,7 @@ body, html {
         width: 90%;
     }
 }
+
+.logo{
+    border-radius: 50%
+}
