@@ -258,3 +258,45 @@ body, html {
     flex-direction: column;
   }
 }
+.instruction-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.instruction-box {
+    background-color: #e8b5b9; 
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.instruction-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.instruction-box .emoji {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.instruction-box p {
+    margin: 0;
+    color: #4a4a4a;
+    font-size: 16px;
+}
+
+
+@media (max-width: 768px) {
+    .instruction-container {
+        width: 90%;
+    }
+}
