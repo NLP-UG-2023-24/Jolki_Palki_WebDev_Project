@@ -9,8 +9,8 @@
 </head>
 <body>
     <header>
-        <button class="tablink" onclick="openPage('Home', this, '#A7B59E')">Home</button>
-        <button class="tablink" onclick="openPage('News', this, '#F2D1D4')" id="defaultOpen">News</button>
+        <button class="tablink" onclick="openPage('Home', this, '#A7B59E')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('News', this, '#F2D1D4')">News</button>
         <button class="tablink" onclick="openPage('Project', this, '#A7B59E')">Project</button>
         <button class="tablink" onclick="openPage('About', this, '#F2D1D4')">About</button>
     </header>
@@ -27,11 +27,20 @@
           Well — buckle up, time traveler. Let's dive into history and see what surprises your birth date holds! 🎉
         </p>
       
-        <ul style="text-align:left; max-width:600px; margin:0 auto; padding-left: 20px;">
-          <li>📅 Pick your birth date using the calendar below.</li>
-          <li>🎂 Click <strong>"Get Fun Facts"</strong> to uncover your birthday's secrets.</li>
-          <li>🎈 Laugh, gasp, and possibly question humanity’s choices.</li>
-        </ul>
+        <div class="instruction-container">
+        <div class="instruction-box">
+            <div class="emoji">📅</div>
+            <p>Pick your birth date using the calendar below.</p>
+        </div>
+        <div class="instruction-box">
+            <div class="emoji">🎂</div>
+            <p>Click <strong>"Get News"</strong> to uncover your birthday's secrets.</p>
+        </div>
+        <div class="instruction-box">
+            <div class="emoji">🎈</div>
+            <p>Laugh, gasp, and possibly question humanity's choices.</p>
+        </div>
+    </div>
         
         <div class="container">
             <h1>Birthday News and Fun Facts</h1>
