@@ -300,3 +300,11 @@ body, html {
         width: 90%;
     }
 }
+
+.logo{
+    border-radius: 50%
+}
+
+.page_name{
+    font-family: "Tiny5"
+}
