@@ -12,6 +12,14 @@
     color: #333;
 }
 
+.people_container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 30px auto;
+}
+
 .person{
     display: flex;
     align-items: center;
@@ -299,6 +307,9 @@ body, html {
     .instruction-container {
         width: 90%;
     }
+    .about_box{
+        width: 90%;
+    }
 }
 
 .logo{
@@ -308,3 +319,26 @@ body, html {
 .page_name{
     font-family: "Tiny5"
 }
+
+.about_box{
+    background-color: #e8b5b9; 
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 2%;
+    max-width: 600px;
+    margin: 30px auto;
+
+}
+
+.about_box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
