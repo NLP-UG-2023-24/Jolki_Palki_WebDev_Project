@@ -127,6 +127,7 @@ input[type="date"] {
 }
 
 button {
+    font-family: "Tiny5";
     padding: 10px 20px;
     font-size: 1em;
     background-color: #D8959B;
