@@ -471,9 +471,9 @@
   }
 
   function accessMainSite() {
-
-
-  }
+  localStorage.setItem('gameCompleted', 'true');
+  window.location.href = 'index.html';
+}
   
   function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
