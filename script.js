@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const gameCompleted = localStorage.getItem('gameCompleted');
+    if (gameCompleted !== 'true') {
+      window.location.href = 'rabbitrunner.html';
+    }
+  });
+
 async function fetchNews() {
     const date = document.getElementById("birthDate").value;
     const articlesDiv = document.getElementById("articles");
