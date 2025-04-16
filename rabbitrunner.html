@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixelated Rabbit Runner Game</title>
+  <style>
+    @font-face {
+      font-family: 'PixelFont';
+      src: url('https://cdnjs.cloudflare.com/ajax/libs/VT323/1.0/VT323-Regular.ttf') format('truetype');
+    }
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #a3d9ff;
+      text-align: center;
+      font-family: 'PixelFont', monospace;
+    }
+    
+    canvas {
+      background: #c7e9ff;
+      display: block;
+      margin: 0 auto;
+      border: 4px solid #f8c8dc;
+      image-rendering: pixelated;
+    }
+    
+    .game-container {
+      text-align: center;
+    }
+    
+    .score {
+      font-size: 32px;
+      margin: 10px 0;
+      color: #654321;
+      font-family: 'PixelFont', monospace;
+    }
+
+    .access-button {
+      display: none; /* Hidden by default */
+      background-color: #98d973;
+      border: 3px solid #654321;
+      color: #654321;
+      padding: 15px 30px;
+      font-family: 'PixelFont', monospace;
+      font-size: 24px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 8px;
+    }
+
+    .access-button:hover {
+      background-color: #7bc952;
+      transform: scale(1.05);
+    }
+
+    .game-instructions {
+      color: #654321;
+      font-family: 'PixelFont', monospace;
+      font-size: 18px;
+      margin: 10px 0 20px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="game-container">
+  <div class="score">SCORE: <span id="scoreDisplay">0</span>/10</div>
+  <div class="game-instructions">CLICK TO JUMP AND AVOID OBSTACLES! SCORE 10 POINTS TO ACCESS THE SITE!</div>
+  <canvas id="gameCanvas" width="800" height="400"></canvas>
+  <button id="accessButton" class="access-button" onclick="accessMainSite()">ACCESS SITE</button>
+</div>
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false; 
+  
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  const accessButton = document.getElementById('accessButton');
+  const groundLevel = canvas.height - 50;
+  let score = 0;
+  let gameOver = false;
+  let gameWon = false;
+  
+ 
+  const COLORS = {
+    sky: "#c7e9ff",
+    ground: "#d2b48c",
+    grass: "#98d973",
+    black: "#333333",
+    white: "#ffffff",
+    rabbitBody: "#ffffff",
+    rabbitEar: "#ffccdd",
+    rabbitEye: "#333333",
+    rabbitNose: "#ffb7c5",
+    rabbitCheek: "#ffdddd",
+    spike: "#cccccc",
+    cloud: "#ffffff",
+    cloudOutline: "#e6f7ff",
+    arrowShaft: "#8b4513",
+    arrowHead: "#333333",
+    arrowFeather: "#ffffff",
+    flower: "#ffaaee"
+  };
+  
+
+  const player = {
+    x: 100,
+    y: groundLevel,
+    width: 40,
+    height: 40,
+    velocityY: 0,
+    gravity: 0.8,
+    jumpStrength: -15,
+    isJumping: false
+  };
+  
+
+  let obstacles = [];
+  const obstacleTypes = ['spike', 'cloud'];
+  
+  const clouds = [];
+  for (let i = 0; i < 5; i++) {
+    clouds.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * 80 + 20,
+      width: Math.random() * 60 + 40,
+      speed: Math.random() * 0.5 + 0.1
+    });
+  }
+  
+ 
+  const flowers = [];
+  for (let i = 0; i < 12; i++) {
+    flowers.push({
+      x: Math.random() * canvas.width,
+      y: groundLevel + player.height - Math.random() * 10 - 8
+    });
+  }
+  
+
+  function drawPixel(x, y, size, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(Math.floor(x), Math.floor(y), size, size);
+  }
+  
+  function drawRect(x, y, width, height, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(Math.floor(x), Math.floor(y), width, height);
+  }
+  
+  function drawPixelatedClouds() {
+    clouds.forEach(cloud => {
+  
+      const pixelSize = 4;
+      const cloudX = Math.floor(cloud.x);
+      const cloudY = Math.floor(cloud.y);
+      
+      for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 10; x++) {
+
+          if ((x === 0 || x === 9) && (y === 0 || y === 4)) continue;
+          
+          drawPixel(cloudX + x * pixelSize, cloudY + y * pixelSize, pixelSize, COLORS.cloud);
+        }
+      }
+      
+
+      for (let x = 2; x < 8; x++) {
+        drawPixel(cloudX + x * pixelSize, cloudY - pixelSize, pixelSize, COLORS.cloud);
+      }
+      
+    
+      drawPixel(cloudX + 1 * pixelSize, cloudY - pixelSize, pixelSize, COLORS.cloudOutline);
+      drawPixel(cloudX + 8 * pixelSize, cloudY - pixelSize, pixelSize, COLORS.cloudOutline);
+      
+      cloud.x -= cloud.speed;
+      
+
+      if (cloud.x + cloud.width < 0) {
+        cloud.x = canvas.width + cloud.width;
+        cloud.y = Math.random() * 80 + 20;
+      }
+    });
+  }
+  
+  function drawPixelatedRabbit() {
+    const baseX = Math.floor(player.x);
+    const baseY = Math.floor(player.y);
+    const pixelSize = 4;
+    
+
+    for (let y = 0; y < 6; y++) {
+      for (let x = 0; x < 6; x++) {
+
+        if ((x === 0 && y === 0) || (x === 0 && y === 5) || (x === 5 && y === 0)) continue;
+        
+        drawPixel(baseX + (x+1) * pixelSize, baseY + (y+3) * pixelSize, pixelSize, COLORS.rabbitBody);
+      }
+    }
+    
+
+    for (let y = 0; y < 5; y++) {
+      for (let x = 0; x < 5; x++) {
+
+        if ((x === 0 && y === 0) || (x === 4 && y === 0)) continue;
+        
+        drawPixel(baseX + (x+5) * pixelSize, baseY + y * pixelSize, pixelSize, COLORS.rabbitBody);
+      }
+    }
+    
+
+    drawPixel(baseX + 6 * pixelSize, baseY - 4 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 6 * pixelSize, baseY - 3 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 6 * pixelSize, baseY - 2 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 6 * pixelSize, baseY - 1 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY - 5 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY - 4 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY - 3 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY - 2 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY - 1 * pixelSize, pixelSize, COLORS.rabbitBody);
+
+    drawPixel(baseX + 8 * pixelSize, baseY - 4 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 8 * pixelSize, baseY - 3 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 8 * pixelSize, baseY - 2 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 8 * pixelSize, baseY - 1 * pixelSize, pixelSize, COLORS.rabbitBody);
+    
+
+    drawPixel(baseX + 7 * pixelSize, baseY - 4 * pixelSize, pixelSize, COLORS.rabbitEar);
+    drawPixel(baseX + 7 * pixelSize, baseY - 3 * pixelSize, pixelSize, COLORS.rabbitEar);
+    drawPixel(baseX + 8 * pixelSize, baseY - 3 * pixelSize, pixelSize, COLORS.rabbitEar);
+    
+
+    drawPixel(baseX + 8 * pixelSize, baseY + 1 * pixelSize, pixelSize, COLORS.rabbitEye);
+    
+
+    drawPixel(baseX + 8 * pixelSize, baseY + 3 * pixelSize, pixelSize, COLORS.rabbitCheek);
+    
+
+    drawPixel(baseX + 9 * pixelSize, baseY + 2 * pixelSize, pixelSize, COLORS.rabbitNose);
+    
+
+    drawPixel(baseX + 2 * pixelSize, baseY + 9 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 3 * pixelSize, baseY + 9 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 7 * pixelSize, baseY + 9 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 8 * pixelSize, baseY + 9 * pixelSize, pixelSize, COLORS.rabbitBody);
+    
+   
+    drawPixel(baseX + 0 * pixelSize, baseY + 4 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 0 * pixelSize, baseY + 5 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 0 * pixelSize, baseY + 6 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 1 * pixelSize, baseY + 4 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 1 * pixelSize, baseY + 5 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX + 1 * pixelSize, baseY + 6 * pixelSize, pixelSize, COLORS.rabbitBody);
+    drawPixel(baseX - 1 * pixelSize, baseY + 5 * pixelSize, pixelSize, COLORS.rabbitBody);
+  }
+  
+  function updatePlayer() {
+    player.velocityY += player.gravity;
+    player.y += player.velocityY;
+    
+    if (player.y >= groundLevel) {
+      player.y = groundLevel;
+      player.velocityY = 0;
+      player.isJumping = false;
+    }
+  }
+  
+  function drawPixelatedGround() {
+  
+    drawRect(0, groundLevel + player.height, canvas.width, canvas.height - groundLevel, COLORS.ground);
+    
+    drawRect(0, groundLevel + player.height - 8, canvas.width, 8, COLORS.grass);
+    
+    for (let x = 0; x < canvas.width; x += 8) {
+      drawPixel(x, groundLevel + player.height - 12, 4, COLORS.grass);
+      
+      if (x % 24 === 0) {
+        drawPixel(x + 4, groundLevel + player.height - 16, 4, COLORS.grass);
+      }
+    }
+    
+    flowers.forEach(flower => {
+      const pixelSize = 4;
+      drawPixel(flower.x, flower.y - pixelSize, pixelSize, COLORS.flower);
+      drawPixel(flower.x - pixelSize, flower.y, pixelSize, COLORS.flower);
+      drawPixel(flower.x, flower.y, pixelSize, "#ffdd00");
+      drawPixel(flower.x + pixelSize, flower.y, pixelSize, COLORS.flower);
+      drawPixel(flower.x, flower.y + pixelSize, pixelSize, COLORS.flower);
+    });
+  }
+  
+  function createObstacle() {
+    const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+    const obstacle = {
+      x: canvas.width,
+      y: groundLevel,
+      width: 24,
+      height: 24,
+      type: type,
+      speed: 5 + Math.random() * 2
+    };
+    
+    if (type === 'cloud') {
+      obstacle.x = canvas.width; // Start from right side
+      obstacle.y = groundLevel - 120 - Math.random() * 120;
+      obstacle.width = 40;
+      obstacle.height = 20;
+    }
+    
+    obstacles.push(obstacle);
+  }
+  
+  function drawPixelatedSpike(x, y, width, height) {
+    const pixelSize = 4;
+    const baseX = Math.floor(x);
+    const baseY = Math.floor(y);
+    
+ 
+    for (let spikeNum = 0; spikeNum < 3; spikeNum++) {
+      const spikeX = baseX + spikeNum * 8;
+      
+      drawPixel(spikeX + 4, baseY, pixelSize, COLORS.spike);
+      
+      drawPixel(spikeX, baseY + 4, pixelSize, COLORS.spike);
+      drawPixel(spikeX + 4, baseY + 4, pixelSize, COLORS.spike);
+      drawPixel(spikeX + 8, baseY + 4, pixelSize, COLORS.spike);
+      
+      drawPixel(spikeX, baseY + 8, pixelSize, COLORS.spike);
+      drawPixel(spikeX + 4, baseY + 8, pixelSize, COLORS.spike);
+      drawPixel(spikeX + 8, baseY + 8, pixelSize, COLORS.spike);
+    }
+  }
+  
+  function drawPixelatedCloud(x, y, width, height) {
+    const pixelSize = 4;
+    const baseX = Math.floor(x);
+    const baseY = Math.floor(y);
+    
+    for (let row = 0; row < 5; row++) {
+      for (let col = 0; col < 10; col++) {
+        if ((row === 0 && col === 0) || 
+            (row === 0 && col === 9) || 
+            (row === 4 && col === 0) || 
+            (row === 4 && col === 9)) continue;
+        
+        drawPixel(baseX + col * pixelSize, baseY + row * pixelSize, pixelSize, COLORS.cloud);
+      }
+    }
+    
+    for (let col = 2; col < 8; col++) {
+      if (col === 3 || col === 6) {
+        drawPixel(baseX + col * pixelSize, baseY - pixelSize, pixelSize, COLORS.cloud);
+      }
+    }
+    
+    for (let col = 3; col < 7; col++) {
+      if (col === 4 || col === 5) {
+        drawPixel(baseX + col * pixelSize, baseY + 5 * pixelSize, pixelSize, COLORS.cloud);
+      }
+    }
+  }
+  
+  function drawObstacles() {
+    obstacles.forEach((obstacle) => {
+      if (obstacle.type === 'spike') {
+        drawPixelatedSpike(obstacle.x, obstacle.y + player.height - obstacle.height, obstacle.width, obstacle.height);
+      } else if (obstacle.type === 'cloud') {
+        drawPixelatedCloud(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+      }
+    });
+  }
+  
+  function updateObstacles() {
+    for (let i = obstacles.length - 1; i >= 0; i--) {
+      obstacles[i].x -= obstacles[i].speed;
+      
+      if (obstacles[i].x + obstacles[i].width < 0) {
+        obstacles.splice(i, 1);
+        score++;
+        scoreDisplay.textContent = score;
+        
+        if (score >= 10) {
+          gameWon = true;
+          showAccessButton();
+        }
+      }
+    }
+    
+    if (!gameOver && !gameWon && Math.random() < 0.02) {
+      createObstacle();
+    }
+  }
+  
+  function checkCollisions() {
+    const playerHitbox = {
+      x: player.x + 16,
+      y: player.y + 10,
+      width: player.width - 20,
+      height: player.height - 10
+    };
+    
+    for (let i = 0; i < obstacles.length; i++) {
+      const obs = obstacles[i];
+      
+  
+      if (
+        playerHitbox.x < obs.x + obs.width &&
+        playerHitbox.x + playerHitbox.width > obs.x &&
+        playerHitbox.y < obs.y + obs.height &&
+        playerHitbox.y + playerHitbox.height > obs.y
+      ) {
+        gameOver = true;
+        break;
+      }
+    }
+  }
+  
+  function drawPixelatedText(text, x, y, size, color) {
+    ctx.fillStyle = color;
+    ctx.font = `${size}px PixelFont, monospace`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, x, y);
+  }
+  
+  function drawGameOver() {
+
+    ctx.fillStyle = "rgba(255, 200, 220, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+
+    drawPixelatedText("GAME OVER", canvas.width / 2, canvas.height / 2 - 50, 48, "#654321");
+    drawPixelatedText(`SCORE: ${score}/10`, canvas.width / 2, canvas.height / 2, 24, "#654321");
+    drawPixelatedText("CLICK TO RESTART", canvas.width / 2, canvas.height / 2 + 50, 16, "#654321");
+  }
+  
+  function drawGameWon() {
+
+    ctx.fillStyle = "rgba(200, 255, 220, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+
+    drawPixelatedText("CONGRATULATIONS!", canvas.width / 2, canvas.height / 2 - 50, 48, "#654321");
+    drawPixelatedText("YOU WON!", canvas.width / 2, canvas.height / 2, 32, "#654321");
+    drawPixelatedText("CLICK THE ACCESS BUTTON", canvas.width / 2, canvas.height / 2 + 50, 16, "#654321");
+  }
+  
+  function resetGame() {
+    player.y = groundLevel;
+    player.velocityY = 0;
+    obstacles = [];
+    score = 0;
+    scoreDisplay.textContent = "0";
+    gameOver = false;
+    gameWon = false;
+    hideAccessButton();
+  }
+
+  function showAccessButton() {
+    accessButton.style.display = "inline-block";
+
+    accessButton.style.animation = "none";
+    setTimeout(() => {
+      accessButton.style.animation = "pop 0.5s ease";
+    }, 10);
+  }
+
+  function hideAccessButton() {
+    accessButton.style.display = "none";
+  }
+
+  function accessMainSite() {
+
+
+  }
+  
+  function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+
+    ctx.fillStyle = COLORS.sky;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+
+    drawPixelatedClouds();
+    drawPixelatedGround();
+    
+    if (!gameOver && !gameWon) {
+  
+      updatePlayer();
+      updateObstacles();
+      checkCollisions();
+      
+
+      drawObstacles();
+      drawPixelatedRabbit();
+    } else if (gameOver) {
+
+      drawObstacles();
+      drawPixelatedRabbit();
+      drawGameOver();
+    } else if (gameWon) {
+
+      drawObstacles();
+      drawPixelatedRabbit();
+      drawGameWon();
+    }
+    
+    requestAnimationFrame(gameLoop);
+  }
+  
+  canvas.addEventListener('mousedown', () => {
+    if (gameOver) {
+      resetGame();
+    } else if (!player.isJumping && !gameWon) {
+      player.velocityY = player.jumpStrength;
+      player.isJumping = true;
+    }
+  });
+
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  `;
+  document.head.appendChild(style);
+  
+
+  gameLoop();
+</script>
+</body>
+</html>
