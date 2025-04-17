@@ -82,6 +82,24 @@
     height: 30px;
 }
 
+.imageflex {
+    display: flex;
+}
+
+.logoimage {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px; 
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.page_name{
+    font-family: "Tiny5";
+    margin-left: 20px;
+    margin-top: 30px;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -326,9 +344,6 @@ body, html {
     border-radius: 50%
 }
 
-.page_name{
-    font-family: "Tiny5"
-}
 
 .about_box{
     background-color: #e8b5b9; 
