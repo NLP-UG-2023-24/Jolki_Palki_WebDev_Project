@@ -274,7 +274,7 @@ body, html {
 }
 
 
-/* BUNNY */
+/* BUNNY IN HOME TAB */
 :root{
     --pixel_art: 6;
 }
@@ -306,6 +306,7 @@ body, html {
 .bunny_jump{
     top: calc(-180px * var(--pixel_art));
 }
+
 
 /* ABOUT TAB FORMATTING */
 
