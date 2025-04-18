@@ -519,6 +519,14 @@
     }
   });
 
+  document.addEventListener('space', () => {
+    if (gameOver) {
+      resetGame();
+    } else if (!player.isJumping && !gameWon) {
+      player.velocityY = player.jumpStrength;
+      player.isJumping = true;
+    }
+  });
 
   const style = document.createElement('style');
   style.innerHTML = `
