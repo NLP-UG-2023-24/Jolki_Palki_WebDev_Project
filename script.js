@@ -15,6 +15,15 @@ async function fetchNews() {
         return;
     }
 
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate > today) {
+        alert("Cannot select future dates!");
+        return;
+    }
+
     try {
         const response = await fetch(`http://localhost:5000/news?date=${date}`);
         const data = await response.json();
