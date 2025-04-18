@@ -519,14 +519,16 @@
     }
   });
 
-  document.addEventListener('space', () => {
+  document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
     if (gameOver) {
       resetGame();
     } else if (!player.isJumping && !gameWon) {
       player.velocityY = player.jumpStrength;
       player.isJumping = true;
     }
-  });
+  }
+});
 
   const style = document.createElement('style');
   style.innerHTML = `
