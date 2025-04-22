@@ -273,7 +273,6 @@ body, html {
     border-radius: 50%
 }
 
-
 /* BUNNY */
 :root{
     --pixel_art: 6;
@@ -284,7 +283,10 @@ body, html {
     height: calc(90px * var(--pixel_art));
     overflow: hidden;
     position: relative;
-    margin: 4em auto;
+    margin: 0.5em auto;
+    float: left;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 @keyframes moveSpritesheet {
