@@ -315,13 +315,15 @@ body, html {
     top: calc(-180px * var(--pixel_size));
 }
 
-/* Bunny NPC - PROJECT PAGE */
+/* Bunny NPC - OTHER TABS */
 
 
 .character_project{
   width: calc(64px * var(--pixel-size2));
   height: calc(90px * var(--pixel-size2));
   overflow: hidden;
+  float: right;
+  cursor: pointer;
 }
 
 .character_spritesheet_project{
@@ -336,6 +338,20 @@ body, html {
     to{
         transform: translate3d(-100%, 0, 0);
     }
+}
+
+.character_text{
+    display: none;
+    color: #4a4a4a;
+    background-color: white;
+    border-radius: 15%;
+    float: right;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.character_project:hover + .character_text{
+    display: block;
 }
 
 /* ABOUT TAB FORMATTING */
