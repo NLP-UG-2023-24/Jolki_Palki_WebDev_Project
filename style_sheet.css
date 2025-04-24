@@ -1,12 +1,41 @@
-.section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* BASIC ELEMENTS */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #F4F3F1;
+    color: #333;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+  }
+
+header{
+    background-color: #F4F3F1;
+    text-align: center;
     padding: 20px;
-    text-align: justify;
+}
+
+header h1  {
+    color: #4a4a4a;
+    margin: 0;
 }
 
 
+#Home {background-color: #A7B59E;}
+#News {background-color: #F2D1D4;}
+#Project {background-color: #A7B59E;}
+#About {background-color: #F2D1D4;}
+
+.titles {
+    font-family: "Tiny5";
+}
+
+/* HEADER */
 .imageflex {
     display: flex;
 }
@@ -26,27 +55,83 @@
     margin-top: 30px;
 }
 
-.titles {
-    font-family: "Tiny5";
+/* TAB STYLING */
+/* Style tab links */
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
+    border-radius: 0 0 5px 5px; /* Slightly rounded corners */
+  }
+  
+  .tablink:hover {
+    background-color: #777;
+  }
+  
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
+    border-radius: 10px;
+  }
+
+/* HOME TAB */
+
+/* NEWS TAB */
+.instruction-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 30px auto;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #F4F3F1;
-    color: #333;
-}
-
-header, footer {
-    background-color: #F4F3F1;
+.instruction-box {
+    background-color: #e8b5b9; 
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-header h1, footer p {
-    color: #4a4a4a;
+.instruction-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.instruction-box .emoji {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.instruction-box p {
     margin: 0;
+    color: #4a4a4a;
+    font-size: 16px;
+}
+
+
+@media (max-width: 768px) {
+    .instruction-container {
+        width: 90%;
+    }
+    .about_box{
+        width: 90%;
+    }
 }
 
 .container {
@@ -97,6 +182,8 @@ button:hover {
     text-align: left;
 }
 
+/* PROJECT TAB */
+
 .article {
     background: white;
     margin: 10px 0;
@@ -128,60 +215,13 @@ button:hover {
 }
 
 
-.about_header {
-    color: #4a4a4a;
+.section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: justify;
 }
-
-.about_icons_box a {
-    color: #4a4a4a;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.about_icons_box a:hover {
-    color: #9370db;
-}
-
-/* Set height of body and the document to 100% to enable "full page tabs" */
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial;
-  }
-  
-  /* Style tab links */
-  .tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Added shadow */
-    border-radius: 0 0 5px 5px; /* Slightly rounded corners */
-  }
-  
-  .tablink:hover {
-    background-color: #777;
-  }
-  
-  /* Style the tab content (and add height:100% for full page content) */
-  .tabcontent {
-    color: white;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
-    border-radius: 10px;
-  }
-  
-  #Home {background-color: #A7B59E;}
-  #News {background-color: #F2D1D4;}
-  #Project {background-color: #A7B59E;}
-  #About {background-color: #F2D1D4;}
 
   .projects_container {
     display: flex;
@@ -223,138 +263,10 @@ body, html {
     flex-direction: column;
   }
 }
-.instruction-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 600px;
-    margin: 30px auto;
-}
 
-.instruction-box {
-    background-color: #e8b5b9; 
-    padding: 15px 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.instruction-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.instruction-box .emoji {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.instruction-box p {
-    margin: 0;
-    color: #4a4a4a;
-    font-size: 16px;
-}
-
-
-@media (max-width: 768px) {
-    .instruction-container {
-        width: 90%;
-    }
-    .about_box{
-        width: 90%;
-    }
-}
-
-.logo{
-    border-radius: 50%
-}
-
-/* Bunny NPC - HOME PAGE */
-
-:root{
-    --pixel_size: 6;
-    --pixel-size2: 3;
-}
-
-.pixelart{
-    image-rendering: pixelated;
-}
-
-.character{
-    width: calc(64px * var(--pixel_size));
-    height: calc(90px * var(--pixel_size));
-    overflow: hidden;
-    position: relative;
-    margin: 0.5em auto auto 6em;
-    float: left;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-}
-
-@keyframes moveSpritesheet {
-    from{
-        transform: translate3d(0px, 0, 0);
-    }
-    to{
-        transform: translate3d(-100%, 0, 0);
-    }
-}
-
-.character_spritesheet{
-    animation: moveSpritesheet 1s steps(4) infinite;
-    width: calc(256px * var(--pixel_size));
-    image-rendering: pixelated;
-    position: absolute;
-}
-
-.bunny_jump{
-    top: calc(-180px * var(--pixel_size));
-}
-
-/* Bunny NPC - OTHER TABS */
-
-
-.character_project{
-  width: calc(64px * var(--pixel-size2));
-  height: calc(90px * var(--pixel-size2));
-  overflow: hidden;
-  float: right;
-  cursor: pointer;
-}
-
-.character_spritesheet_project{
-    animation: moveSpritesheet2 1s steps(4) infinite;
-    width: calc(256px * var(--pixel-size2));
-}
-
-@keyframes moveSpritesheet2 {
-    from{
-        transform: translate3d(0px, 0, 0);
-    }
-    to{
-        transform: translate3d(-100%, 0, 0);
-    }
-}
-
-.character_text{
-    display: none;
-    color: #4a4a4a;
-    background-color: white;
-    border-radius: 15%;
-    float: right;
-    padding: 20px;
-    margin-top: 100px;
-}
-
-.character_project:hover + .character_text{
-    display: block;
-}
 
 /* ABOUT TAB FORMATTING */
+
 
 .about{
     display: none;
@@ -474,3 +386,92 @@ body, html {
 .gap{
     width: 5%;
 }
+
+@media (max-width: 768px) {
+    .about_box {
+      margin: 15px;
+      padding: 10px;
+    }
+}
+
+/* Bunny NPC - HOME PAGE */
+
+:root{
+    --pixel_size: 6;
+    --pixel-size2: 3;
+}
+
+.pixelart{
+    image-rendering: pixelated;
+}
+
+.character{
+    width: calc(64px * var(--pixel_size));
+    height: calc(90px * var(--pixel_size));
+    overflow: hidden;
+    position: relative;
+    margin: 0.5em auto auto 6em;
+    float: left;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+@keyframes moveSpritesheet {
+    from{
+        transform: translate3d(0px, 0, 0);
+    }
+    to{
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.character_spritesheet{
+    animation: moveSpritesheet 1s steps(4) infinite;
+    width: calc(256px * var(--pixel_size));
+    image-rendering: pixelated;
+    position: absolute;
+}
+
+.bunny_jump{
+    top: calc(-180px * var(--pixel_size));
+}
+
+/* Bunny NPC - OTHER TABS */
+
+
+.character_project{
+    width: calc(64px * var(--pixel-size2));
+    height: calc(90px * var(--pixel-size2));
+    overflow: hidden;
+    float: right;
+    cursor: pointer;
+  }
+  
+  .character_spritesheet_project{
+      animation: moveSpritesheet2 1s steps(4) infinite;
+      width: calc(256px * var(--pixel-size2));
+  }
+  
+  @keyframes moveSpritesheet2 {
+      from{
+          transform: translate3d(0px, 0, 0);
+      }
+      to{
+          transform: translate3d(-100%, 0, 0);
+      }
+  }
+  
+  .character_text{
+      display: none;
+      color: #4a4a4a;
+      background-color: white;
+      border-radius: 15%;
+      float: right;
+      padding: 20px;
+      margin-top: 100px;
+  }
+  
+  .character_project:hover + .character_text{
+      display: block;
+  }
+
