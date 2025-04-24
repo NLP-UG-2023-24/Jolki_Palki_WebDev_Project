@@ -273,13 +273,20 @@ body, html {
     border-radius: 50%
 }
 
+/* Bunny NPC - HOME PAGE */
+
 :root{
-    --pixel_art: 6;
+    --pixel_size: 6;
+    --pixel-size2: 3;
+}
+
+.pixelart{
+    image-rendering: pixelated;
 }
 
 .character{
-    width: calc(64px * var(--pixel_art));
-    height: calc(90px * var(--pixel_art));
+    width: calc(64px * var(--pixel_size));
+    height: calc(90px * var(--pixel_size));
     overflow: hidden;
     position: relative;
     margin: 0.5em auto auto 6em;
@@ -299,15 +306,53 @@ body, html {
 
 .character_spritesheet{
     animation: moveSpritesheet 1s steps(4) infinite;
-    width: calc(256px * var(--pixel_art));
+    width: calc(256px * var(--pixel_size));
     image-rendering: pixelated;
     position: absolute;
 }
 
 .bunny_jump{
-    top: calc(-180px * var(--pixel_art));
+    top: calc(-180px * var(--pixel_size));
 }
 
+/* Bunny NPC - OTHER TABS */
+
+
+.character_project{
+  width: calc(64px * var(--pixel-size2));
+  height: calc(90px * var(--pixel-size2));
+  overflow: hidden;
+  float: right;
+  cursor: pointer;
+}
+
+.character_spritesheet_project{
+    animation: moveSpritesheet2 1s steps(4) infinite;
+    width: calc(256px * var(--pixel-size2));
+}
+
+@keyframes moveSpritesheet2 {
+    from{
+        transform: translate3d(0px, 0, 0);
+    }
+    to{
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+.character_text{
+    display: none;
+    color: #4a4a4a;
+    background-color: white;
+    border-radius: 15%;
+    float: right;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.character_project:hover + .character_text{
+    display: block;
+}
 
 /* ABOUT TAB FORMATTING */
 
