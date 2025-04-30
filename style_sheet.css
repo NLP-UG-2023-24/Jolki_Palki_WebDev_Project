@@ -521,68 +521,76 @@ button:hover {
     background-color: #4a4a4a;
   }
   
-
-  
-  /* Grayscale */
-  body.grayscale {
-    filter: grayscale(100%);
-  }
-  
-  /* Contrast */
-  body.high-contrast {
-    background-color: black;
-    color: yellow;
-  }
-  
-  body.high-contrast .container,
-  body.high-contrast .article,
-  body.high-contrast .project,
-  body.high-contrast .about_box,
-  body.high-contrast .instruction-box,
-  body.high-contrast .person {
-    background-color: black;
-    color: yellow;
-    border: 2px solid yellow;
-  }
-  
-  body.high-contrast header, 
-  body.high-contrast footer {
-    background-color: black;
-  }
-  
-  body.high-contrast h1,  
-  body.high-contrast .page_name,
-  body.high-contrast p,
-  body.high-contrast a {
-    color: yellow;
-  }
-  
-  body.high-contrast button {
-    background-color: black;
-    color: yellow;
-    border: 2px solid yellow;
-  }
-  
-  body.high-contrast button:hover {
-    background-color: yellow;
-    color: black;
-  }
-  
-  body.high-contrast .tablink {
-    background-color: black;
-    color: yellow;
-    border: 2px solid yellow;
-  }
-  
-  body.high-contrast .tabcontent {
-    background-color: black;
-    color: yellow;
-  }
-
-  body.high-contrast .textcolor {
-    color: black !important;
-}
-
-body.high-contrast h3 {
-    color: black;
-}
+    /* Style Grayscale */
+    body.grayscale {
+        filter: grayscale(100%);
+      }
+      
+      /* Style High Contrast */
+      body.high-contrast {
+        background-color: black;
+        color: yellow;
+      }
+      
+      body.high-contrast .container,
+      body.high-contrast .article,
+      body.high-contrast .project,
+      body.high-contrast .about_box,
+      body.high-contrast .instruction-box,
+      body.high-contrast .person {
+        background-color: black;
+        color: yellow;
+        border: 2px solid yellow;
+      }
+      
+      body.high-contrast header, 
+      body.high-contrast footer {
+        background-color: black;
+      }
+      
+      body.high-contrast h1,  
+      body.high-contrast .page_name,
+      body.high-contrast p,
+      body.high-contrast a {
+        color: yellow;
+      }
+      
+      body.high-contrast button {
+        background-color: black;
+        color: yellow;
+        border: 2px solid yellow;
+      }
+      
+      body.high-contrast button:hover {
+        background-color: yellow;
+        color: black;
+      }
+      
+      body.high-contrast .tablink {
+        background-color: black;
+        color: yellow;
+        border: 2px solid yellow;
+      }
+      
+      body.high-contrast .tabcontent {
+        background-color: black;
+        color: yellow;
+      }
+    
+    /*Additional settings*/
+    
+      body.high-contrast .textcolor {
+        color: black !important;
+    }
+    
+      body.high-contrast .person:hover .about,
+      body.high-contrast .person:hover .about p {
+        color: black !important;
+    }
+      body.high-contrast .person h3,
+      body.high-contrast .titles {
+        color: yellow !important;
+    }
+      body.high-contrast #News h3.titles {
+        color: black !important;
+    }
