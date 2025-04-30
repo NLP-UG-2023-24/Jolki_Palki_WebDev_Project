@@ -147,6 +147,10 @@ header h1  {
 h1, h3 {
     color: #4a4a4a;
 }
+.textcolor {
+    color: #4a4a4a; 
+}
+
 
 input[type="date"] {
     font-size: 1em;
@@ -475,3 +479,110 @@ button:hover {
       display: block;
   }
 
+/* Accessibility */
+.accessibility-controls {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px;
+    margin: 20px;
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+  }
+  
+
+.accessibility-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .accessibility-btn {
+    font-family: "Tiny5", Arial, sans-serif;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #D8959B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .accessibility-btn:hover {
+    background-color: #B97483;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .accessibility-btn.active {
+    background-color: #4a4a4a;
+  }
+  
+
+  
+  /* Grayscale */
+  body.grayscale {
+    filter: grayscale(100%);
+  }
+  
+  /* Contrast */
+  body.high-contrast {
+    background-color: black;
+    color: yellow;
+  }
+  
+  body.high-contrast .container,
+  body.high-contrast .article,
+  body.high-contrast .project,
+  body.high-contrast .about_box,
+  body.high-contrast .instruction-box,
+  body.high-contrast .person {
+    background-color: black;
+    color: yellow;
+    border: 2px solid yellow;
+  }
+  
+  body.high-contrast header, 
+  body.high-contrast footer {
+    background-color: black;
+  }
+  
+  body.high-contrast h1,  
+  body.high-contrast .page_name,
+  body.high-contrast p,
+  body.high-contrast a {
+    color: yellow;
+  }
+  
+  body.high-contrast button {
+    background-color: black;
+    color: yellow;
+    border: 2px solid yellow;
+  }
+  
+  body.high-contrast button:hover {
+    background-color: yellow;
+    color: black;
+  }
+  
+  body.high-contrast .tablink {
+    background-color: black;
+    color: yellow;
+    border: 2px solid yellow;
+  }
+  
+  body.high-contrast .tabcontent {
+    background-color: black;
+    color: yellow;
+  }
+
+  body.high-contrast .textcolor {
+    color: black !important;
+}
+
+body.high-contrast h3 {
+    color: black;
+}

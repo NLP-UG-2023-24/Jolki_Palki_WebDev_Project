@@ -64,3 +64,63 @@ function openPage(pageName, elmnt, color) {
 }
 
 document.getElementById("defaultOpen").click();
+
+// Accessibility
+
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    const grayscaleBtn = document.getElementById('grayscaleBtn');
+    const highContrastBtn = document.getElementById('highContrastBtn');
+    
+
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      darkModeBtn.classList.add('active');
+    }
+    
+    if (localStorage.getItem('grayscale') === 'true') {
+      document.body.classList.add('grayscale');
+      grayscaleBtn.classList.add('active');
+    }
+    
+    if (localStorage.getItem('highContrast') === 'true') {
+      document.body.classList.add('high-contrast');
+      highContrastBtn.classList.add('active');
+    }
+
+    darkModeBtn.addEventListener('click', function() {
+      document.body.classList.toggle('dark-mode');
+      darkModeBtn.classList.toggle('active');
+
+      if (document.body.classList.contains('dark-mode') && 
+          document.body.classList.contains('high-contrast')) {
+        document.body.classList.remove('high-contrast');
+        highContrastBtn.classList.remove('active');
+        localStorage.setItem('highContrast', 'false');
+      }
+      
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    
+    grayscaleBtn.addEventListener('click', function() {
+      document.body.classList.toggle('grayscale');
+      grayscaleBtn.classList.toggle('active');
+      localStorage.setItem('grayscale', document.body.classList.contains('grayscale'));
+    });
+    
+    
+    highContrastBtn.addEventListener('click', function() {
+      document.body.classList.toggle('high-contrast');
+      highContrastBtn.classList.toggle('active');
+      
+      
+      if (document.body.classList.contains('high-contrast') && 
+          document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        darkModeBtn.classList.remove('active');
+        localStorage.setItem('darkMode', 'false');
+      }
+      
+      localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+    });
+  });
