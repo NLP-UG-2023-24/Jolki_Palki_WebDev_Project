@@ -480,24 +480,14 @@ button:hover {
   }
 
 /* Accessibility */
+
 .accessibility-controls {
     display: flex;
     justify-content: flex-end; 
     gap: 15px;
-    margin: 20px;
-    position: fixed; 
-    top: 20px; 
-    right: 20px; 
-    z-index: 1000; 
-  }
-  
-
-.accessibility-controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
     margin: 20px 0;
-  }
+    margin-left: auto; 
+}
   
   .accessibility-btn {
     font-family: "Tiny5", Arial, sans-serif;
