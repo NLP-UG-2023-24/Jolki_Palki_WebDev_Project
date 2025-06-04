@@ -90,11 +90,12 @@ header h1  {
 /* NEWS TAB */
 .instruction-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; 
     gap: 15px;
     max-width: 600px;
     margin: 30px auto;
 }
+
 
 .instruction-box {
     background-color: #e8b5b9; 
@@ -106,6 +107,7 @@ header h1  {
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    flex: 1; 
 }
 
 .instruction-box:hover {
@@ -127,13 +129,10 @@ header h1  {
 
 @media (max-width: 768px) {
     .instruction-container {
-        width: 90%;
-    }
-    .about_box{
+        flex-direction: column; 
         width: 90%;
     }
 }
-
 .container {
     max-width: 800px;
     margin: 0 auto;
