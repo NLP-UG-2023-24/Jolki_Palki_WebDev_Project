@@ -157,6 +157,7 @@ header h1  {
     gap: 15px;
     max-width: 600px;
     margin: 30px auto;
+    
 }
 
 
@@ -332,122 +333,137 @@ button:hover {
 
 
 .about{
-    display: none;
-    color: #333;
+  display: none;
+  color: #333;
 }
 
 .about_box{
-    background-color: #e8b5b9; 
-    padding: 15px 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    margin: 2%;
-    max-width: 1000px;
-    margin: 30px auto;
+  background-color: #e8b5b9; 
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin: 2%;
+  max-width: 1000px;
+  margin: 30px auto;
+  width: 90%;
 }
 
 .about_box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .about_box h1{
-    font-family: "Tiny5";
+  font-family: "Tiny5";
 }
 
 .about_box  p{
-    color: #4a4a4a;
+  color: #4a4a4a;
 }
 
 .people_container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 90%;
-    margin: 30px auto;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 90%;
+  margin: 30px auto;
+  margin-bottom: 30px;
+  width: 100%;
 }
 
 .person{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 15px;          
-    background-color:#D8959B;  
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin-bottom: 20px;
-    position: relative;
-    max-width: 100%;
-    text-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 15px;          
+  background-color:#D8959B;  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  text-wrap: wrap;
 }
 
 .photo {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px; 
-    order: 1
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px; 
+  order: 1
+}
+
+.name_about {
+flex: 1; 
+min-width: 0; 
 }
 
 .person h3 {
-    text-transform: uppercase;
-    margin: 0;
-    cursor: pointer;
-    order: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+  text-transform: uppercase;
+  margin: 0;
+  cursor: pointer;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .person:hover .about{
-    display: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: left;
-    width: fit-content;
-    padding: 15px;
-    flex: 1;
-    background-color: #fff;
-    padding: 20px;
-    color: #4a4a4a;
-    font-size: 18px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  padding: 15px;
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  color: #4a4a4a;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .about_icons_box{
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center; 
+  flex-wrap: wrap;
 }
 
 .about_icons_box a{
-    background-color: white;
-    padding: 1em;
-    border-radius: 50%;
+  background-color: white;
+  padding: 1em;
+  border-radius: 50%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
 
+
 .about_icons_box a svg{
-    height: 30px;
+  height: 30px;
+  width: 30px;
 }
 
 .row{
-    display: flex;
+  display: flex;
+  gap: 2%; 
+  width: 100%; 
 }
 
 .column{
-    flex: 50%;;
-}
-
-.gap{
-    width: 5%;
+flex: 1; 
+min-width: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -497,6 +513,34 @@ button:hover {
   .about_icons_box {
     justify-content: center;
   }
+
+/* Additional changes - it does not work on small screens without that wrrr */
+@media (max-width: 480px) {
+.about_box {
+  margin: 10px;
+  padding: 8px;
+  width: calc(100% - 20px);
+}
+
+.person {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+}
+
+.person h3 {
+  font-size: 18px;
+}
+
+.person:hover .about {
+  font-size: 14px;
+  padding: 8px;
+}
+
 }
 
 /* Bunny NPC - HOME PAGE */
