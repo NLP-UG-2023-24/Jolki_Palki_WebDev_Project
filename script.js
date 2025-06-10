@@ -124,3 +124,22 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
     });
   });
+
+
+// API ATTEMPT 1
+
+const news = document.getElementById("articles")
+const NewsUrl = "https://api.thenewsapi.com/v1/news/all?api_token=o4v9x8yN78o0nusEQICizp4kgoEpSP8uNYzDlQqL"
+
+function fetchNews(){
+  fetch(NewsUrl)
+  .then((res) => res.json())
+    const publishdate = res[0]["published_at"];
+    for(let i=0; i < publishdate.length; i++){
+      if(publishdate = "2000-05-07T10:29:00.000000Z"){
+        res
+      }
+    }
+}
+
+document.getElementById("NewsBtn").addEventListener("click", fetchNews)
