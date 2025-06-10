@@ -25,6 +25,63 @@ header h1  {
     margin: 0;
 }
 
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .imageflex {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .logoimage {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .page_name {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+    header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tablink {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    margin: 2px;
+    flex: 1 0 calc(50% - 4px); 
+    min-width: 0;
+    text-align: center;
+  }
+
+  .tabcontent {
+    padding: 15px;
+  }
+
+  .instruction-container {
+    flex-direction: column;
+  }
+
+  .instruction-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .container {
+    padding: 10px;
+  }
+}
+
 
 #Home {background-color: #A7B59E;}
 #News {background-color: #F2D1D4;}
@@ -409,60 +466,53 @@ flex: 1;
 min-width: 0;
 }
 
-
-@media (max-width: 768px) {
-  .about_box {
-    margin: 15px;
-    padding: 10px;
-    width: calc(100% - 30px);
+@media screen and (max-width: 767px) {
+  .about_section {
+    padding: 15px;
   }
-}
-.people_container {
-  width: 95%;
-  margin: 15px auto;
-}
 
-.person {
-  flex-direction: column; 
-  text-align: center;
-  gap: 15px;
-  padding: 15px;
-}
+  .people_container {
+    flex-direction: column;
+  }
 
-.photo {
-  width: 120px; 
-  height: 120px;
-  order: 0; 
-}
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.name_about {
-  order: 1;
-  width: 100%;
-}
+  .person {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 30px;
+    flex-direction: column;
+  }
 
-.person:hover .about {
-  font-size: 16px; 
-  padding: 10px;
-}
+  .column {
+    width: 100%;
+  }
 
-.row {
-  flex-direction: column; 
-  gap: 15px;
-}
+  .gap {
+    display: none;
+  }
 
-.about_icons_box {
-  gap: 15px;
-}
+  .photo {
+    margin: 0 auto 15px;
+    display: block;
+  }
 
-.about_icons_box a {
-  padding: 0.8em;
-}
+  .name_about {
+    text-align: center;
+  }
 
-.about_icons_box a svg {
-  height: 25px;
-  width: 25px;
-}
 
+  .about {
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .about_icons_box {
+    justify-content: center;
+  }
 
 /* Additional changes - it does not work on small screens without that wrrr */
 @media (max-width: 480px) {
@@ -490,6 +540,7 @@ min-width: 0;
   font-size: 14px;
   padding: 8px;
 }
+
 }
 
 /* Bunny NPC - HOME PAGE */
@@ -702,7 +753,8 @@ body.dark-mode {
   body.dark-mode .page_name,
   body.dark-mode p,
   body.dark-mode .textcolor,
-  body.dark-mode h3.titles {
+  body.dark-mode h3.titles,
+  body.dark-mode h3.newstitle {
     color: #e0e0e0;
   }
   
@@ -770,6 +822,29 @@ body.dark-mode {
   body.dark-mode .person:hover .about,
   body.dark-mode .person:hover .about p {
     color: black !important;   
+  }
+
+  @media screen and (max-width: 767px) {
+      .accessibility-controls {
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 8px; 
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .accessibility-btn {
+    margin: 0; 
+    width: auto; 
+    padding: 8px 12px; 
+    font-size: 0.8rem; 
+    flex: 1; 
+    min-width: 100px; 
+    max-width: 120px; 
+    white-space: nowrap;
+  }
   }
 
 /* thought bubble */
