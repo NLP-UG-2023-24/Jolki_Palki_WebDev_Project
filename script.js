@@ -25,15 +25,18 @@ async function fetchNews() {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/news?date=${date}`);
-        const data = await response.json();
+      
+      const apiKey = 'o4v9x8yN78o0nusEQICizp4kgoEpSP8uNYzDlQqL'
+      const url = `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&published_on=${date}&language=en`
+        const response = await fetch(url);
+        const dataResponse = await response.json();
 
-        if (data.articles.length === 0) {
+        if (dataResponse.data.length === 0) {
             articlesDiv.innerHTML = "<p>No news found for this date!</p>";
             return;
         }
 
-        data.articles.forEach((article) => {
+        dataResponse.data.forEach((article) => {
             const articleDiv = document.createElement("div");
             articleDiv.className = "article";
             articleDiv.innerHTML = `
@@ -128,18 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // API ATTEMPT 1
 
-const news = document.getElementById("articles")
-const NewsUrl = "https://api.thenewsapi.com/v1/news/all?api_token=o4v9x8yN78o0nusEQICizp4kgoEpSP8uNYzDlQqL"
+// const news = document.getElementById("articles")
+// const NewsUrl = "https://api.thenewsapi.com/v1/news/all?api_token=o4v9x8yN78o0nusEQICizp4kgoEpSP8uNYzDlQqL"
 
-function fetchNews(){
-  fetch(NewsUrl)
-  .then((res) => res.json())
-    const publishdate = res[0]["published_at"];
-    for(let i=0; i < publishdate.length; i++){
-      if(publishdate = "2000-05-07T10:29:00.000000Z"){
-        res
-      }
-    }
-}
+// function fetchNews(){
+//   fetch(NewsUrl)
+//   .then((res) => res.json())
+//     const publishdate = res[0]["published_at"];
+//     for(let i=0; i < publishdate.length; i++){
+//       if(publishdate = "2000-05-07T10:29:00.000000Z"){
+//         res
+//       }
+//     }
+// }
 
 document.getElementById("NewsBtn").addEventListener("click", fetchNews)
