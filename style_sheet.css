@@ -1,7 +1,7 @@
 /* BASIC ELEMENTS */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, serif;
     margin: 0;
     padding: 0;
     background: #F4F3F1;
@@ -11,7 +11,7 @@ body {
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial;
+    font-family: Georgia, serif;
   }
 
 header{
@@ -642,11 +642,11 @@ min-width: 0;
     justify-content: flex-end; 
     gap: 15px;
     margin: 20px 0;
-    margin-left: auto; 
+    padding-left: 788px;
 }
   
   .accessibility-btn {
-    font-family: "Tiny5", Arial, sans-serif;
+    font-family: "Tiny5", Georgia, serif;
     padding: 10px 20px;
     font-size: 1em;
     background-color: #D8959B;
@@ -835,6 +835,10 @@ body.dark-mode {
     color: black !important;   
   }
 
+  .site-footer {
+    font-family: "Tiny5";
+  }
+
   @media screen and (max-width: 767px) {
       .accessibility-controls {
     display: flex;
@@ -843,6 +847,7 @@ body.dark-mode {
     justify-content: center;
     gap: 8px; 
     margin-top: 10px;
+    padding-left: 0;
     width: 100%;
   }
 
@@ -856,6 +861,14 @@ body.dark-mode {
     max-width: 120px; 
     white-space: nowrap;
   }
+
+  .site-footer {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #e1e1e1;
+    margin-top: 15px;
+  }
+
   }
 
 /* thought bubble */
@@ -901,3 +914,4 @@ body.dark-mode {
     background: white;
     box-shadow: -4px -4px #fff, -4px 0 #fff, -8px 0 #fff, 0 -8px #fff, -4px 4px #000, -8px 4px #000, -12px 4px #000, -16px 4px #000, -12px 0 #000, -8px -4px #000, -4px -8px #000, 0 -4px #fff; }
   
+    
