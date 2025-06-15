@@ -1,4 +1,4 @@
-# **Birthday News and Fun Facts Platform**
+# **THE B-DAY BRIEF**
 
 Our platform offers a unique and engaging experience by letting users explore the news and events that happened on their special day. Here's what the site currently offers and what exciting features are coming in the future:
 
