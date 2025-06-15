@@ -66,6 +66,7 @@ header h1  {
 
   .tabcontent {
     padding: 15px;
+    padding-bottom: 100px;
   }
 
   .instruction-container {
@@ -332,6 +333,9 @@ button:hover {
 
 /* ABOUT TAB FORMATTING */
 
+#About{
+  padding-bottom: 150px; 
+}
 
 .about{
   display: none;
@@ -596,6 +600,7 @@ min-width: 0;
     overflow: hidden;
     float: right;
     cursor: pointer;
+    margin-bottom: 100px;
   }
   
   .character_spritesheet_project{
