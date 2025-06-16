@@ -966,7 +966,7 @@ body.dark-mode {
     padding: 8px;
     margin: 20px 0 0 -20px;
     position: absolute;
-    top: 30em;
+    top: 50em;
     left: 20em;
     z-index: 1;
     align-self: flex-start;
@@ -974,7 +974,7 @@ body.dark-mode {
 
   .bubble.large {
     width: calc(100% - 100px);
-    max-width: 200px;
+    max-width: 150px;
     font-size: 14px;
     text-align: left;
     line-height: 1.4;
