@@ -3,9 +3,7 @@ html, body {
   margin: 0;
   font-family: Georgia, serif;
 }
-
 body {
-    font-family: Georgia, serif;
     padding: 0;
     background: #F4F3F1;
     color: #333;
@@ -579,8 +577,6 @@ min-width: 0;
     height: calc(90px * var(--pixel_size));
     overflow: hidden;
     position: relative;
-    margin: 0.5em auto auto 6em;
-    float: left;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
@@ -894,7 +890,14 @@ body.dark-mode {
     white-space: nowrap;
   }
 
-  }
+}
+
+.tabcontent-home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 /* thought bubble */
 
@@ -902,8 +905,6 @@ body.dark-mode {
   position: relative;
   display: flex;
   justify-content: flex-end;
-  right: -100px;
-  bottom: -150px;
   margin: 20px;
   text-align: center;
   font-family: "Lucida Console", "Courier New", monospace;
@@ -914,7 +915,8 @@ body.dark-mode {
   padding: 12px;
   box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000;
   box-sizing: border-box;
-  width: 200px; }
+  width: 100%; 
+}
 
   .bubble::after {
     content: '';
@@ -926,7 +928,7 @@ body.dark-mode {
     box-shadow: 0 -4px #fff, 0 -8px #000, 4px 0 #fff, 4px -4px #000, 8px 0 #000, 0 4px #fff, 0 8px #000, -4px 0 #fff, -4px 4px #000, -8px 0 #000, -4px -4px #000, 4px 4px #000, 4px 12px rgba(0, 0, 0, 0.1), 12px 4px rgba(0, 0, 0, 0.1), 8px 8px rgba(0, 0, 0, 0.1); }
   
     .bubble.large {
-    width: 560px;
+    max-width: 560px;
     font-size: 24px;
     text-align: left;
     text-transform: lowercase; }
@@ -944,15 +946,10 @@ body.dark-mode {
   @media screen and (max-width: 767px) {
 
   /* flexbox for bunny + bubble */
-  .tabcontent-home {
-    display: flex;
-    flex-direction: row;
-    position: center;
-  }
 
  /* bunny responsiveness */
   :root {
-    --mobile-pixel-size: 3;
+    --mobile-pixel-size: 2;
     --mobile-pixel-size2: 2;
   }
 
@@ -986,23 +983,16 @@ body.dark-mode {
   /* bubble responsiveness */
   .bubble {
     font-size: 12px;
-    width: 120px;
     padding: 8px;
-    margin: 20px 0 0 -20px;
-    position: absolute;
-    top: 50em;
-    left: 20em;
     z-index: 1;
     align-self: flex-start;
   }
 
   .bubble.large {
-    width: calc(100% - 100px);
-    max-width: 150px;
+    max-width: 160px;
     font-size: 14px;
     text-align: left;
     line-height: 1.4;
-    margin-left: -30px;
   }
 
   .bubble.shadow {
