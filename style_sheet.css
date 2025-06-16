@@ -6,13 +6,16 @@ body {
     padding: 0;
     background: #F4F3F1;
     color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Georgia, serif;
-  }
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Georgia, serif;
+}
 
 header{
     background-color: #F4F3F1;
@@ -89,6 +92,10 @@ header h1  {
 #Project {background-color: #A7B59E;}
 #About {background-color: #F2D1D4;}
 
+#Home.tabcontent {
+  padding-bottom: 20px;
+}
+
 .newstitle {
   font-family: "Tiny5";
   text-align: center;
@@ -141,12 +148,21 @@ header h1  {
   
   /* Style the tab content (and add height:100% for full page content) */
   .tabcontent {
-    color: white;
     display: none;
-    padding: 100px 20px;
+    position: relative;
+    min-height: min-content;
     height: 100%;
+    color: white;
+    padding: 20px;
+    padding-bottom: 250px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
     border-radius: 10px;
+  }
+
+    @media screen and (max-width: 480px) {
+    .tabcontent {
+      padding-bottom: 150px;
+    }
   }
 
 /* HOME TAB */
@@ -337,10 +353,6 @@ button:hover {
 
 
 /* ABOUT TAB FORMATTING */
-
-#About{
-  padding-bottom: 150px; 
-}
 
 .about{
   display: none;
@@ -598,20 +610,41 @@ min-width: 0;
 
 /* Bunny NPC - OTHER TABS */
 
+.character_project_container {
+    position: absolute;
+    right: 10%;
+    bottom: -30px;
+    width: fit-content;
+    height: auto;
+}
 
-.character_project{
+.character_project {
     width: calc(64px * var(--pixel-size2));
     height: calc(90px * var(--pixel-size2));
     overflow: hidden;
-    float: right;
     cursor: pointer;
-    margin-bottom: 100px;
-  }
-  
-  .character_spritesheet_project{
+    margin: 0 auto;
+}
+
+  .character_spritesheet_project {
       animation: moveSpritesheet2 1s steps(4) infinite;
       width: calc(256px * var(--pixel-size2));
   }
+
+  @media screen and (max-width: 480px) {
+    .character_project_container  {
+      bottom: -10px;
+    }
+    .character_project {
+      width: calc(32px * var(--pixel-size2));
+      height: calc(45px * var(--pixel-size2));
+    }
+
+    .character_spritesheet_project {
+      width: calc(128px * var(--pixel-size2));
+    }
+  }
+
   
   @keyframes moveSpritesheet2 {
       from{
@@ -622,17 +655,18 @@ min-width: 0;
       }
   }
   
-  .character_text{
+  .character_text {
       display: none;
+      position: absolute;
+      top: 25%;
+      right: calc(80%);
       color: #4a4a4a;
       background-color: white;
-      border-radius: 15%;
-      float: right;
+      border-radius: 15px;
       padding: 20px;
-      margin-top: 100px;
   }
   
-  .character_project:hover + .character_text{
+  .character_project:hover + .character_text {
       display: block;
   }
 
@@ -642,8 +676,7 @@ min-width: 0;
     display: flex;
     justify-content: flex-end; 
     gap: 15px;
-    margin: 20px 0;
-    padding-left: 788px;
+    margin: 20px 20px 20px auto; 
 }
   
   .accessibility-btn {
@@ -837,6 +870,7 @@ body.dark-mode {
   }
 
   .site-footer {
+    text-align: center;
     font-family: "Tiny5";
   }
 
@@ -861,13 +895,6 @@ body.dark-mode {
     min-width: 100px; 
     max-width: 120px; 
     white-space: nowrap;
-  }
-
-  .site-footer {
-    text-align: center;
-    padding-top: 15px;
-    border-top: 1px solid #e1e1e1;
-    margin-top: 15px;
   }
 
   }
